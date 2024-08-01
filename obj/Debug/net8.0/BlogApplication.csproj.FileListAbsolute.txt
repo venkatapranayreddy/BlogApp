@@ -142,3 +142,5 @@
 /Users/venkatapranayareddysanivarapu/Desktop/DOTNET/BlogApp/BlogApplication/bin/Debug/net8.0/Microsoft.Extensions.Identity.Stores.dll
 /Users/venkatapranayareddysanivarapu/Desktop/DOTNET/BlogApp/BlogApplication/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
 /Users/venkatapranayareddysanivarapu/Desktop/DOTNET/BlogApp/BlogApplication/obj/Debug/net8.0/BlogAppl.B511B2D6.Up2Date
+/Users/venkatapranayareddysanivarapu/Desktop/DOTNET/BlogApp/BlogApplication/obj/Debug/net8.0/BlogApplication.sourcelink.json
+/Users/venkatapranayareddysanivarapu/Desktop/DOTNET/BlogApp/BlogApplication/bin/Debug/net8.0/AutoMapper.dll

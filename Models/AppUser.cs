@@ -8,6 +8,9 @@ namespace BlogApplication.Models
 {
     public class AppUser : IdentityUser
     {
+        public DateTime DateTimme { get; set; } = DateTime.Now;
+
+
         // public List<Articles> Articles { get; set; } = new List<Articles>();
     }
 }

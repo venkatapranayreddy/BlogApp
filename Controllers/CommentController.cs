@@ -8,6 +8,7 @@ using BlogApplication.Extensions;
 using BlogApplication.Interfaces;
 using BlogApplication.Mappers;
 using BlogApplication.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +35,7 @@ namespace BlogApplication.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAllComment()
         {
             var comment = await _icommentRepository.GetCommentsAsync();
@@ -44,6 +46,7 @@ namespace BlogApplication.Controllers
         }
 
         [HttpPost("{articleId:int}")]
+        [Authorize]
         public async Task<IActionResult> CreateComment([FromRoute] int articleId,[FromBody] CreateCommentDto createCommentDto)
         {
             var user = User.GetUsername();
@@ -62,6 +65,7 @@ namespace BlogApplication.Controllers
 
          
         [HttpGet("{id:int}")]
+        [Authorize] // this cann done only by admin
         public async Task<IActionResult> GetCommentById([FromRoute] int id)
         {
             var commentId = await  _icommentRepository.GetCommentByIdAsync(id);
@@ -74,6 +78,7 @@ namespace BlogApplication.Controllers
         }
 
         [HttpPut("{articleId:int}")]
+        [Authorize]
         public async Task<IActionResult> UpdateCommentById([FromRoute] int articleId,[FromBody] UpdateCommentDto updateCommentDto)
         {
             
@@ -86,6 +91,7 @@ namespace BlogApplication.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
+        [Authorize]
          public async Task<IActionResult> DeleteCommentById([FromRoute] int id)
          {
             var commentId = await _icommentRepository.DeleteCommentByIdAsync(id);

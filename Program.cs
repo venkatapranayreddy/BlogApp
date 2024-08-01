@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using BlogApplication.Data;
 using BlogApplication.Interfaces;
 using BlogApplication.Models;
@@ -76,8 +77,10 @@ builder.Services.AddAuthentication(options => {
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer =true,
+        NameClaimType = ClaimTypes.GivenName, 
         ValidIssuer = builder.Configuration["JWT:Issuer"],
         ValidateAudience = true,
+        ValidateLifetime = true,
         ValidAudience = builder.Configuration["JWT:Audience"],
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"]))
@@ -88,6 +91,8 @@ builder.Services.AddAuthentication(options => {
 builder.Services.AddScoped<IArticleRepository, ArticleRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 
 
 var app = builder.Build();

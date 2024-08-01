@@ -4,6 +4,7 @@ using BlogApplication.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogApplication.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240729192014_BlogUserXref")]
+    partial class BlogUserXref
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -271,11 +274,20 @@ namespace BlogApplication.Migrations
                     b.Property<string>("RoleId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(34)
+                        .HasColumnType("nvarchar(34)");
+
                     b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasDiscriminator().HasValue("IdentityUserRole<string>");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -309,25 +321,35 @@ namespace BlogApplication.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "86037bf0-9813-4855-829b-ca56b4dd9332",
+                            Id = "e776d52a-3de0-4f3e-a79b-fb8b3fcb6fdb",
                             Name = "User",
                             NormalizedName = "USER",
-                            CreatedDate = new DateTime(2024, 7, 29, 19, 31, 12, 596, DateTimeKind.Utc).AddTicks(5800)
+                            CreatedDate = new DateTime(2024, 7, 29, 19, 20, 13, 382, DateTimeKind.Utc).AddTicks(4950)
                         },
                         new
                         {
-                            Id = "5ee8567e-e427-475e-a720-16d488e96f83",
+                            Id = "2654beec-406a-4911-a71d-96db8223f8a8",
                             Name = "Admin",
                             NormalizedName = "ADMIN",
-                            CreatedDate = new DateTime(2024, 7, 29, 19, 31, 12, 596, DateTimeKind.Utc).AddTicks(5820)
+                            CreatedDate = new DateTime(2024, 7, 29, 19, 20, 13, 382, DateTimeKind.Utc).AddTicks(4960)
                         },
                         new
                         {
-                            Id = "2856648d-bb6d-4dbe-ae5a-6c1fe34ec7b2",
+                            Id = "013aca60-1397-4291-9261-8e1433238400",
                             Name = "ReadyOnly",
                             NormalizedName = "READONLY",
-                            CreatedDate = new DateTime(2024, 7, 29, 19, 31, 12, 596, DateTimeKind.Utc).AddTicks(5830)
+                            CreatedDate = new DateTime(2024, 7, 29, 19, 20, 13, 382, DateTimeKind.Utc).AddTicks(4970)
                         });
+                });
+
+            modelBuilder.Entity("BlogApplication.Models.BlogUserXref", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUserRole<string>");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("BlogUserXref");
                 });
 
             modelBuilder.Entity("BlogApplication.Models.Articles", b =>

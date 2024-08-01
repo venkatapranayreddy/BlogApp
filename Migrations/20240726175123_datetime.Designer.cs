@@ -4,6 +4,7 @@ using BlogApplication.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogApplication.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240726175123_datetime")]
+    partial class datetime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,11 +167,6 @@ namespace BlogApplication.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
-
                     b.Property<string>("Name")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -186,9 +184,19 @@ namespace BlogApplication.Migrations
 
                     b.ToTable("AspNetRoles", (string)null);
 
-                    b.HasDiscriminator().HasValue("IdentityRole");
-
-                    b.UseTphMappingStrategy();
+                    b.HasData(
+                        new
+                        {
+                            Id = "aea97cb7-5138-4ea8-8a76-9caf94386b05",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = "433e1036-dbdd-49d2-bcd0-2c5741646224",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -295,39 +303,6 @@ namespace BlogApplication.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("BlogApplication.Models.Roles", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasDiscriminator().HasValue("Roles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "86037bf0-9813-4855-829b-ca56b4dd9332",
-                            Name = "User",
-                            NormalizedName = "USER",
-                            CreatedDate = new DateTime(2024, 7, 29, 19, 31, 12, 596, DateTimeKind.Utc).AddTicks(5800)
-                        },
-                        new
-                        {
-                            Id = "5ee8567e-e427-475e-a720-16d488e96f83",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN",
-                            CreatedDate = new DateTime(2024, 7, 29, 19, 31, 12, 596, DateTimeKind.Utc).AddTicks(5820)
-                        },
-                        new
-                        {
-                            Id = "2856648d-bb6d-4dbe-ae5a-6c1fe34ec7b2",
-                            Name = "ReadyOnly",
-                            NormalizedName = "READONLY",
-                            CreatedDate = new DateTime(2024, 7, 29, 19, 31, 12, 596, DateTimeKind.Utc).AddTicks(5830)
-                        });
                 });
 
             modelBuilder.Entity("BlogApplication.Models.Articles", b =>

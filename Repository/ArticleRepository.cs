@@ -75,7 +75,7 @@ namespace BlogApplication.Repository
 
         public async Task<Articles?> UpdateArticleAsync(int id, UpdateArticleDto updateArticleDto)
         {
-            var updateArticle = await _applicationDBContext.Articles.FirstOrDefaultAsync(i => i.Id == id);
+            var updateArticle = await _applicationDBContext.Articles.Include( a => a.appUser).FirstOrDefaultAsync(i => i.Id == id);
 
             if(updateArticle == null){
                 return null;
@@ -83,6 +83,7 @@ namespace BlogApplication.Repository
             updateArticle.Title = updateArticleDto.Title;
             updateArticle.Description = updateArticleDto.Description;
             updateArticle.Category = updateArticleDto.Category;
+            
             
             await _applicationDBContext.SaveChangesAsync();
             return updateArticle;

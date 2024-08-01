@@ -30,6 +30,7 @@ namespace BlogApplication.Controllers
         }
 
         [HttpGet]
+        // [Authorize]
         public async Task<IActionResult> GetAllArticles()
         {
             var articles = await _iarticleRepository.GetAllAsync();
@@ -41,6 +42,7 @@ namespace BlogApplication.Controllers
 
 
         [HttpGet("{id:int}")]
+        [Authorize]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var articleById = await _iarticleRepository.GetByIdAsync(id);
@@ -82,11 +84,13 @@ namespace BlogApplication.Controllers
 
         [HttpPut]
         [Route("{id:int}")]
-        public async Task<IActionResult> UpdateArticle([FromRoute] int id, [FromBody] UpdateArticleDto updateArticleDto)
+        [Authorize]
+        public async Task<IActionResult> UpdateArticle([FromRoute] int id, [FromBody] UpdateArticleDto updateArticleDto,IFormFile file)
         {
             
-            
+             var fileUploader = await _iarticleRepository.Upload(file);
           var  articles =  await _iarticleRepository.UpdateArticleAsync(id, updateArticleDto);
+              articles.FilePath = fileUploader;
           if(articles == null) {
             return NotFound();
           }
@@ -98,6 +102,7 @@ namespace BlogApplication.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
+        [Authorize]
         public async Task<IActionResult> DeleteArticle([FromRoute] int id)
         {
             var Deletedarticle = await _iarticleRepository.DeleteArticleAsync(id);
