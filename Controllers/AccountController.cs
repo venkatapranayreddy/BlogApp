@@ -211,18 +211,30 @@ namespace BlogApplication.Controllers
                     if (!passwordResult.Succeeded) return BadRequest(passwordResult.Errors);
                 }
                  
-                 return Ok("User informmation updated Sucessfully");
+                 return Ok("User information updated Sucessfully");
                 
             }
 
 
-    //  [HttpDelete]
-    //  [Route("{userName:string}")]
+
+
+        // [HttpGet]
+        // [Authorize(Roles="Admin")]
+        // public async Task<IActionResult> GetAllUser()
+        // {
+        //     var user = await _userManager.Users.ToListAsync();
+        // return Ok(user);
+        // }
+
+
+
+
+    //  [HttpDelete("{userName}")]
     //  public async Task<IActionResult> DeleteUsers()
     //  {
     //     return Ok(Users);
     //  }
-//        
+      
 
 
 

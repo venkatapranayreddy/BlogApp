@@ -38,7 +38,7 @@ namespace BlogApplication.Repository
            var tokenDescriptor = new SecurityTokenDescriptor
            {
              Subject = new ClaimsIdentity(Claims),
-             Expires = DateTime.Now.AddDays(1),
+             Expires = DateTime.Now.AddMinutes(1),
              SigningCredentials = creds,
              Issuer = _iConfiguration["JWT:Issuer"],
              Audience = _iConfiguration["JWT:Audience"]

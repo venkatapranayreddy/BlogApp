@@ -38,7 +38,9 @@ namespace BlogApplication.Repository
 
         public async Task<Articles?> DeleteArticleAsync(int id)
         {
-            var DeletingArticle = await _applicationDBContext.Articles.Include(s => s.Comments).FirstOrDefaultAsync(i => i.Id == id);
+            var DeletingArticle = await _applicationDBContext.Articles
+                                        .Include(s => s.Comments)
+                                        .FirstOrDefaultAsync(i => i.Id == id);
 
             if(DeletingArticle == null)
              {
