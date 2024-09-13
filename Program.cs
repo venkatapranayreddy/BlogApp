@@ -46,15 +46,15 @@ builder.Services.AddSwaggerGen(option =>
 });
 
 
+// //To make the SQL Server run
+// builder.Services.AddDbContext<ApplicationDBContext>(options => {
+//     options.UseSqlServer(builder.Configuration.GetConnectionString("DeafultConnection"));
+// });
 
-
-
-
-
-//To make the SQL Server run
 builder.Services.AddDbContext<ApplicationDBContext>(options => {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DeafultConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("StagingConnection"));
 });
+
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(options => {
     options.Password.RequireDigit =true;

@@ -65,7 +65,7 @@ namespace BlogApplication.Controllers
 
          
         [HttpGet("{id:int}")]
-        [Authorize] // this cann done only by admin
+        // [Authorize] // this cann done only by admin
         public async Task<IActionResult> GetCommentById([FromRoute] int id)
         {
             var commentId = await  _icommentRepository.GetCommentByIdAsync(id);

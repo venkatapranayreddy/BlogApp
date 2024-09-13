@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/venkatapranayareddysanivarapu/Desktop/DOTNET/BlogApp/BlogApplication/BlogApplication.csproj": {}
+    "/Users/venkatapranayareddysanivarapu/Desktop/DOTNET/Blog/BlogApp/BlogApplication/BlogApplication.csproj": {}
   },
   "projects": {
-    "/Users/venkatapranayareddysanivarapu/Desktop/DOTNET/BlogApp/BlogApplication/BlogApplication.csproj": {
+    "/Users/venkatapranayareddysanivarapu/Desktop/DOTNET/Blog/BlogApp/BlogApplication/BlogApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/venkatapranayareddysanivarapu/Desktop/DOTNET/BlogApp/BlogApplication/BlogApplication.csproj",
+        "projectUniqueName": "/Users/venkatapranayareddysanivarapu/Desktop/DOTNET/Blog/BlogApp/BlogApplication/BlogApplication.csproj",
         "projectName": "BlogApplication",
-        "projectPath": "/Users/venkatapranayareddysanivarapu/Desktop/DOTNET/BlogApp/BlogApplication/BlogApplication.csproj",
+        "projectPath": "/Users/venkatapranayareddysanivarapu/Desktop/DOTNET/Blog/BlogApp/BlogApplication/BlogApplication.csproj",
         "packagesPath": "/Users/venkatapranayareddysanivarapu/.nuget/packages/",
-        "outputPath": "/Users/venkatapranayareddysanivarapu/Desktop/DOTNET/BlogApp/BlogApplication/obj/",
+        "outputPath": "/Users/venkatapranayareddysanivarapu/Desktop/DOTNET/Blog/BlogApp/BlogApplication/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/venkatapranayareddysanivarapu/.nuget/NuGet/NuGet.Config"
@@ -44,6 +44,10 @@
           "targetAlias": "net8.0",
           "dependencies": {
             "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[12.0.1, )"
             },

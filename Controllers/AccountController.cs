@@ -111,6 +111,12 @@ namespace BlogApplication.Controllers
         {
             if (!ModelState.IsValid) 
                 return BadRequest(ModelState);
+            
+            // var user = await _userManager.FindByEmailAsync(registerDto.Email);
+            // if (user != null)
+            // {
+            //     return BadRequest(new { message = "Email is already taken" });
+            // }
 
             var result = await _iuserRepository.RegisterAsync(registerDto);
 
